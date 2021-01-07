@@ -94,9 +94,10 @@ app.post('/promotions', promotionCtrl.create);
 app.put('/promotions/:id', promotionCtrl.update);
 app.delete('/promotions/:id', promotionCtrl.destroy);
 
+
 app.get('/health', (req, res) => res.send('OK'));
 
-var mongoUri = 'mongodb+srv://'+cryptr.decrypt(config.dbuser)+':'+cryptr.decrypt(config.dbpass)+'@hopkinscms.lc1d1.mongodb.net/hopkinscms?retryWrites=true&w=majority';
+var mongoUri = 'mongodb+srv://'+cryptr.decrypt(config.dbuser)+':'+cryptr.decrypt(config.dbpass)+'@hopkinscms.rwvej.mongodb.net/hopkinscms?retryWrites=true&w=majority';
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('error', console.error.bind(console, 'connection error'));
 mongoose.connection.once('open', function(){

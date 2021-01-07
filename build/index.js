@@ -117,7 +117,7 @@ app["delete"]('/promotions/:id', _promotionCtrl["default"].destroy);
 app.get('/health', function (req, res) {
   return res.send('OK');
 });
-var mongoUri = 'mongodb+srv://' + cryptr.decrypt(_config["default"].dbuser) + ':' + cryptr.decrypt(_config["default"].dbpass) + '@hopkinscms.lc1d1.mongodb.net/hopkinscms?retryWrites=true&w=majority';
+var mongoUri = 'mongodb+srv://' + cryptr.decrypt(_config["default"].dbuser) + ':' + cryptr.decrypt(_config["default"].dbpass) + '@hopkinscms.rwvej.mongodb.net/hopkinscms?retryWrites=true&w=majority';
 
 _mongoose["default"].connect(mongoUri, {
   useNewUrlParser: true,
