@@ -24,6 +24,7 @@ import { LoginRoot, PromolistRoot, PromoformRoot } from './roots';
 var PORT = process.env.PORT || 3003;
 passportConfig(passport);
 
+// middleware
 const app = express();
 app.use(session({
     secret: 'banana',
@@ -37,16 +38,19 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 
+// recurring job can be used to change promo status later
 cron.schedule('* * 1 * *', () => {
   fetch('https://hopkinscms.herokuapp.com/')
   .then(res => console.log("requested at " + new Date()));
 });
+
 
 var dataObj = {},
 loginBundle = "",
 promolistBundle = "",
 promoformBundle = "";
 
+// getting bundles from dist folder
 fs.readFile('./dist/js/login.bundle.min.js', "utf8", (err, data) => {
   if (err) console.log("ERR" ,err);
   loginBundle = data || "";
@@ -60,6 +64,7 @@ fs.readFile('./dist/js/promoform.bundle.min.js', "utf8", (err, data) => {
   promoformBundle = data || "";
 });
 
+// These are pages
 app.get('/login', (req, res) => {
   let data = "";
   res.set('Cache-Control', 'public, max-age=31557600');
@@ -76,11 +81,13 @@ app.get('/promoform', (req, res) => {
   res.send(returnHTML(data, promoformBundle, PromoformRoot, "promoform"));
 });
 
+// pulls images from folder
 app.get('/images/:id', (req, res) => {
   res.set('Cache-Control', 'public, max-age=31557600');
   res.sendFile(path.join(__dirname, '../images/' + req.params.id));
 });
 
+// end points
 app.post('/api/login', passport.authenticate('local-login'), userCtrl.login);
 app.post('/api/signup', passport.authenticate('local-signup'), userCtrl.login);
 app.get('/getMe', userCtrl.getMe);
@@ -97,6 +104,7 @@ app.delete('/promotions/:id', promotionCtrl.destroy);
 
 app.get('/health', (req, res) => res.send('OK'));
 
+// mongo config
 var mongoUri = 'mongodb+srv://'+cryptr.decrypt(config.dbuser)+':'+cryptr.decrypt(config.dbpass)+'@hopkinscms.rwvej.mongodb.net/hopkinscms?retryWrites=true&w=majority';
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('error', console.error.bind(console, 'connection error'));
