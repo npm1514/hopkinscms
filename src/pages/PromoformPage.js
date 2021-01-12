@@ -10,7 +10,7 @@ class Promoform extends Component {
               <Header/>
               <ContentWrapper>
                 <PromoformContent>
-                  promoform page
+                  
                 </PromoformContent>
               </ContentWrapper>
               <Footer/>
