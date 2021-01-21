@@ -44,7 +44,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var cryptr = new _cryptr["default"](_config["default"].key);
 var PORT = process.env.PORT || 3003;
-(0, _passport2["default"])(_passport["default"]);
+(0, _passport2["default"])(_passport["default"]); // middleware
+
 var app = (0, _express["default"])();
 app.use((0, _expressSession["default"])({
   secret: 'banana',
@@ -56,7 +57,7 @@ app.use(_passport["default"].session());
 app.use((0, _compression["default"])());
 app.use((0, _cors["default"])());
 app.use(_bodyParser["default"].json());
-app.use(_bodyParser["default"].urlencoded());
+app.use(_bodyParser["default"].urlencoded()); // recurring job can be used to change promo status later
 
 _nodeCron["default"].schedule('* * 1 * *', function () {
   (0, _nodeFetch["default"])('https://hopkinscms.herokuapp.com/').then(function (res) {
@@ -67,22 +68,21 @@ _nodeCron["default"].schedule('* * 1 * *', function () {
 var dataObj = {},
     loginBundle = "",
     promolistBundle = "",
-    promoformBundle = "";
+    promoformBundle = ""; // getting bundles from dist folder
 
 _fs["default"].readFile('./dist/js/login.bundle.min.js', "utf8", function (err, data) {
   if (err) console.log("ERR", err);
   loginBundle = data || "";
-});
+}); // fs.readFile('./dist/js/promolist.bundle.min.js', "utf8", (err, data) => {
+//   if (err) console.log("ERR" ,err);
+//   promolistBundle = data || "";
+// });
+// fs.readFile('./dist/js/promoform.bundle.min.js', "utf8", (err, data) => {
+//   if (err) console.log("ERR" ,err);
+//   promoformBundle = data || "";
+// });
+// These are pages
 
-_fs["default"].readFile('./dist/js/promolist.bundle.min.js', "utf8", function (err, data) {
-  if (err) console.log("ERR", err);
-  promolistBundle = data || "";
-});
-
-_fs["default"].readFile('./dist/js/promoform.bundle.min.js', "utf8", function (err, data) {
-  if (err) console.log("ERR", err);
-  promoformBundle = data || "";
-});
 
 app.get('/login', function (req, res) {
   var data = "";
@@ -98,11 +98,13 @@ app.get('/promoform', function (req, res) {
   var data = "";
   res.set('Cache-Control', 'public, max-age=31557600');
   res.send(returnHTML(data, promoformBundle, _roots.PromoformRoot, "promoform"));
-});
+}); // pulls images from folder
+
 app.get('/images/:id', function (req, res) {
   res.set('Cache-Control', 'public, max-age=31557600');
   res.sendFile(_path["default"].join(__dirname, '../images/' + req.params.id));
-});
+}); // end points
+
 app.post('/api/login', _passport["default"].authenticate('local-login'), _userCtrl["default"].login);
 app.post('/api/signup', _passport["default"].authenticate('local-signup'), _userCtrl["default"].login);
 app.get('/getMe', _userCtrl["default"].getMe);
@@ -116,7 +118,8 @@ app.put('/promotions/:id', _promotionCtrl["default"].update);
 app["delete"]('/promotions/:id', _promotionCtrl["default"].destroy);
 app.get('/health', function (req, res) {
   return res.send('OK');
-});
+}); // mongo config
+
 var mongoUri = 'mongodb+srv://' + cryptr.decrypt(_config["default"].dbuser) + ':' + cryptr.decrypt(_config["default"].dbpass) + '@hopkinscms.rwvej.mongodb.net/hopkinscms?retryWrites=true&w=majority';
 
 _mongoose["default"].connect(mongoUri, {

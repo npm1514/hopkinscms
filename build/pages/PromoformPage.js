@@ -53,7 +53,7 @@ var Promoform = /*#__PURE__*/function (_Component) {
   _createClass(Promoform, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react["default"].createElement(_global.PageWrapper, null, /*#__PURE__*/_react["default"].createElement(_components.Header, null), /*#__PURE__*/_react["default"].createElement(_global.ContentWrapper, null, /*#__PURE__*/_react["default"].createElement(_promoform.PromoformContent, null, "promoform page")), /*#__PURE__*/_react["default"].createElement(_components.Footer, null));
+      return /*#__PURE__*/_react["default"].createElement(_global.PageWrapper, null, /*#__PURE__*/_react["default"].createElement(_components.Header, null), /*#__PURE__*/_react["default"].createElement(_global.ContentWrapper, null, /*#__PURE__*/_react["default"].createElement(_promoform.PromoformContent, null, /*#__PURE__*/_react["default"].createElement(_components.NewPromo, null))), /*#__PURE__*/_react["default"].createElement(_components.Footer, null));
     }
   }]);
 
