@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from 'react'
 
-function NewPromo() {
+function CreatePromo() {
 
   const [description, setDescription] = useState('')
-  const [price, setPrice] = useState('')
-  const [active, setActive] = useState('')
+  const [price, setPrice] = useState(0)
+  const [active, setActive] = useState(false)
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
 
@@ -36,22 +36,17 @@ function NewPromo() {
 
   return (
     <form onSubmit={ handleSubmit }>
-      <label htmlFor="">Event Description</label>
-      <input 
-        required
-        type="text"
-        name="description"
-        // onChange event 
-        onChange={(event) => {setDescription(event.target.value)}}
-        value = { email }
-      />
-      <label htmlFor="">Price</label>
-      <label htmlFor="">Go live</label>
-      <label htmlFor="">Date</label>
-      <label htmlFor="">Time</label>
-      <input type="submit"></input>
-    </form>
+        <label htmlFor="">Description:</label>
+        <input 
+        // if someone types incorrect format 
+          required
+          type="text"
+          name="description"
+          onChange={(event) => {setDescription(event.target.value)}}
+          value={ description }  
+          />  
+      </form>
   )
 }
 
-export default NewPromo;
+export default CreatePromo;
