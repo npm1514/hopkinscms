@@ -1,9 +1,21 @@
 const mongoose = require('mongoose');
 
   var promotionSchema = new mongoose.Schema({
-    prop1: {type: String, required: true},
-    prop2: {type: Number, required: true},
-    user: {type: mongoose.Schema.Types.ObjectId, ref: "users"}
+    description: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+      // possible validator
+    },
+    active: {
+      type: Boolean,
+      default: false,
+      required: true
+    }
+    // user: {type: mongoose.Schema.Types.ObjectId, ref: "users"}
   });
 
   module.exports = mongoose.model('promotions', promotionSchema);
