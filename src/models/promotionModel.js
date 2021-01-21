@@ -14,7 +14,17 @@ const mongoose = require('mongoose');
       type: Boolean,
       default: false,
       required: true
+    },
+    date: {
+      type: String,
+      required: true
+    },
+
+    time: {
+      type: String,
+      required: true
     }
+
     // user: {type: mongoose.Schema.Types.ObjectId, ref: "users"}
   });
 
