@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from 'react'
 
-function newPromo() {
+function NewPromo() {
 
   const [description, setDescription] = useState('')
   const [price, setPrice] = useState('')
@@ -30,9 +30,28 @@ function newPromo() {
     })
   }
 
+  if (description === undefined) {
+    return null
+  }
+
   return (
     <form onSubmit={ handleSubmit }>
-      
+      <label htmlFor="">Event Description</label>
+      <input 
+        required
+        type="text"
+        name="description"
+        // onChange event 
+        onChange={(event) => {setDescription(event.target.value)}}
+        value = { email }
+      />
+      <label htmlFor="">Price</label>
+      <label htmlFor="">Go live</label>
+      <label htmlFor="">Date</label>
+      <label htmlFor="">Time</label>
+      <input type="submit"></input>
     </form>
   )
 }
+
+export default NewPromo;
