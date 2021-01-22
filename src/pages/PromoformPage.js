@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Header, Footer } from '../components';
-import { NewPromo } from '../components';
 import { PromoformContent } from '../styled-components/pages/promoform';
 import { PageWrapper, ContentWrapper } from '../styled-components/global';
+import  CreatePromo  from '../components/CreatePromo';
 
 class Promoform extends Component {
     render(){
@@ -11,7 +11,7 @@ class Promoform extends Component {
               <Header/>
               <ContentWrapper>
                 <PromoformContent>
-                  <NewPromo/> 
+                  <CreatePromo/>
                 </PromoformContent>
               </ContentWrapper>
               <Footer/>

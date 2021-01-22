@@ -25,18 +25,18 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function NewPromo() {
+function CreatePromo() {
   var _useState = (0, _react.useState)(''),
       _useState2 = _slicedToArray(_useState, 2),
       description = _useState2[0],
       setDescription = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(''),
+  var _useState3 = (0, _react.useState)(),
       _useState4 = _slicedToArray(_useState3, 2),
       price = _useState4[0],
       setPrice = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(''),
+  var _useState5 = (0, _react.useState)(false),
       _useState6 = _slicedToArray(_useState5, 2),
       active = _useState6[0],
       setActive = _useState6[1];
@@ -86,27 +86,59 @@ function NewPromo() {
     onSubmit: handleSubmit
   }, /*#__PURE__*/_react["default"].createElement("label", {
     htmlFor: ""
-  }, "Event Description"), /*#__PURE__*/_react["default"].createElement("input", {
+  }, "Description:"), /*#__PURE__*/_react["default"].createElement("input", {
+    // if someone types incorrect format 
     required: true,
-    type: "text",
-    name: "description" // onChange event 
-    ,
+    type: "textarea",
+    name: "description",
     onChange: function onChange(event) {
       setDescription(event.target.value);
     },
-    value: email
+    value: description
   }), /*#__PURE__*/_react["default"].createElement("label", {
     htmlFor: ""
-  }, "Price"), /*#__PURE__*/_react["default"].createElement("label", {
+  }, "Price"), /*#__PURE__*/_react["default"].createElement("input", {
+    required: true,
+    type: "text",
+    name: "price",
+    onChange: function onChange(event) {
+      setPrice(event.target.value);
+    },
+    value: price
+  }), /*#__PURE__*/_react["default"].createElement("label", {
     htmlFor: ""
-  }, "Go live"), /*#__PURE__*/_react["default"].createElement("label", {
+  }, "Go live"), /*#__PURE__*/_react["default"].createElement("input", {
+    required: true,
+    type: "checkbox",
+    name: "active",
+    onChange: function onChange(event) {
+      setActive(event.target.value);
+    },
+    value: active
+  }), /*#__PURE__*/_react["default"].createElement("label", {
     htmlFor: ""
-  }, "Date"), /*#__PURE__*/_react["default"].createElement("label", {
+  }, "Date"), /*#__PURE__*/_react["default"].createElement("input", {
+    required: true,
+    type: "date",
+    name: "date",
+    onChange: function onChange(event) {
+      setDate(event.target.value);
+    },
+    value: date
+  }), /*#__PURE__*/_react["default"].createElement("label", {
     htmlFor: ""
   }, "Time"), /*#__PURE__*/_react["default"].createElement("input", {
+    required: true,
+    type: "time",
+    name: "time",
+    onChange: function onChange(event) {
+      setTime(event.target.value);
+    },
+    value: time
+  }), /*#__PURE__*/_react["default"].createElement("input", {
     type: "submit"
   }));
 }
 
-var _default = NewPromo;
+var _default = CreatePromo;
 exports["default"] = _default;

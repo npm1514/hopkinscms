@@ -15,8 +15,6 @@ var _login = require("../styled-components/pages/login");
 
 var _global = require("../styled-components/global");
 
-var _userModel = _interopRequireDefault(require("../models/userModel"));
-
 var _LoginForm = _interopRequireDefault(require("../components/LoginForm"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
