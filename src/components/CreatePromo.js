@@ -30,9 +30,7 @@ function CreatePromo() {
     })
   }
 
-  if (description === undefined) {
-    return null
-  }
+ 
 
   return (
     <form onSubmit={ handleSubmit }>
