@@ -53,18 +53,19 @@ function CreatePromo() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    var body = {
+      description: description,
+      price: price,
+      active: active,
+      date: date,
+      time: time
+    };
     fetch('/promotions', {
       method: 'POST',
       headers: {
-        'Content-Type': 'applications/json'
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringiify({
-        description: description,
-        price: price,
-        active: active,
-        date: date,
-        time: time
-      })
+      body: JSON.stringify(body)
     }).then(function (res) {
       if (res.status != 200) {
         return {
@@ -76,10 +77,6 @@ function CreatePromo() {
     }).then(function (res) {
       console.log(res);
     });
-  }
-
-  if (description === undefined) {
-    return null;
   }
 
   return /*#__PURE__*/_react["default"].createElement("form", {
@@ -102,7 +99,7 @@ function CreatePromo() {
     type: "text",
     name: "price",
     onChange: function onChange(event) {
-      setPrice(event.target.value);
+      setPrice(parseInt(event.target.value));
     },
     value: price
   }), /*#__PURE__*/_react["default"].createElement("label", {
@@ -112,7 +109,8 @@ function CreatePromo() {
     type: "checkbox",
     name: "active",
     onChange: function onChange(event) {
-      setActive(event.target.value);
+      var val = event.target.value == "true" ? true : false;
+      setActive(val);
     },
     value: active
   }), /*#__PURE__*/_react["default"].createElement("label", {

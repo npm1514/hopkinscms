@@ -3,8 +3,8 @@ const webpack = require('webpack');
 require('@babel/polyfill');
 const pages = [
 'login',
-// 'promolist',
-// 'promoform'
+'promolist',
+'promoform'
 ];
 
 module.exports = pages.map((page) => {
