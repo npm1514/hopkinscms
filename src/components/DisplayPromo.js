@@ -21,14 +21,7 @@ const DisplayPromo = () => {
       }
     }).then(res => {
       console.log('JSON!!!', res)
-      const allPromos = res
-      for (let i = 0; i < allPromos.length; i++){
-        console.log(allPromos[i])
-        promos.push(allPromos[i])
-      }
-
-      setPromos(promos)
-      console.log(promos[1])
+      setPromos(res)
     })
     
   }
@@ -41,9 +34,14 @@ const DisplayPromo = () => {
  
 
   return (
-    <>
-        { promos.description }
-    </>
+    <div>
+        { 
+          promos.map((promo,index) => {
+              return (
+                <div>{promo.description}</div>
+                )
+        }) }
+    </div>
   )
 }
 
