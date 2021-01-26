@@ -11,11 +11,11 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _components = require("../components");
 
+var _DisplayPromo = _interopRequireDefault(require("../components/DisplayPromo"));
+
 var _promolist = require("../styled-components/pages/promolist");
 
 var _global = require("../styled-components/global");
-
-var _DisplayPromo = _interopRequireDefault(require("../components/DisplayPromo"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 

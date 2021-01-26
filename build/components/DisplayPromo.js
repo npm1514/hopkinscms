@@ -47,15 +47,17 @@ var DisplayPromo = function DisplayPromo() {
         return res.json();
       }
     }).then(function (res) {
+      console.log('JSON!!!', res);
       var allPromos = res;
 
       for (var i = 0; i < allPromos.length; i++) {
+        console.log(allPromos[i]);
         promos.push(allPromos[i]);
       }
 
-      setPromos(promos);
       console.log(promos[1]);
     });
+    setPromos(promos);
   }; // When page renders it will call getPromos to access the DB
 
 
@@ -63,9 +65,7 @@ var DisplayPromo = function DisplayPromo() {
   (0, _react.useEffect)(function () {
     getPromos();
   }, []);
-  return /*#__PURE__*/_react["default"].createElement("div", null, promos.map(function (promo, index) {
-    return /*#__PURE__*/_react["default"].createElement("h1", null, " ", promo.description, " ");
-  }));
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, promos.description);
 };
 
 var _default = DisplayPromo;

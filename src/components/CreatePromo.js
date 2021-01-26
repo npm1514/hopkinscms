@@ -30,8 +30,6 @@ function CreatePromo() {
     })
   }
 
- 
-
   return (
     <form onSubmit={ handleSubmit }>
         <label htmlFor="">Description:</label>

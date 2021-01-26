@@ -20,13 +20,17 @@ const DisplayPromo = () => {
         return res.json()
       }
     }).then(res => {
+      console.log('JSON!!!', res)
       const allPromos = res
       for (let i = 0; i < allPromos.length; i++){
+        console.log(allPromos[i])
         promos.push(allPromos[i])
       }
+
       setPromos(promos)
       console.log(promos[1])
     })
+    
   }
 
   // When page renders it will call getPromos to access the DB
@@ -37,14 +41,9 @@ const DisplayPromo = () => {
  
 
   return (
-    <div>
-        { promos.map((promo, index)=> {
-          return ( 
-            <h1> { promo.description } </h1>
-            )
-        }) 
-        }
-    </div>
+    <>
+        { promos.description }
+    </>
   )
 }
 
