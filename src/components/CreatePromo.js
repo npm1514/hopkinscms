@@ -4,7 +4,7 @@ import { useState } from 'react'
 function CreatePromo() {
 
   const [description, setDescription] = useState('')
-  const [price, setPrice] = useState()
+  const [price, setPrice] = useState(0)
   const [active, setActive] = useState(false)
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
@@ -13,7 +13,7 @@ function CreatePromo() {
     event.preventDefault()
     fetch('/promotions', {
       method:'POST',
-      headers: {'Content-Type': 'applications/json'},
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringiify({
         description, price, active, date, time
       })
@@ -30,9 +30,9 @@ function CreatePromo() {
     })
   }
 
-  if (description === undefined) {
-    return null
-  }
+  // if (description === undefined) {
+  //   return null
+  // }
 
   return (
     <form onSubmit={ handleSubmit }>
@@ -55,7 +55,6 @@ function CreatePromo() {
       />
       <label htmlFor="">Go live</label>
       <input 
-        required
         type="checkbox"
         name="active"
         onChange={(event) => {setActive(event.target.value)}}

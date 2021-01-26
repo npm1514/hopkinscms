@@ -55,14 +55,14 @@ fs.readFile('./dist/js/login.bundle.min.js', "utf8", (err, data) => {
   if (err) console.log("ERR" ,err);
   loginBundle = data || "";
 });
-// fs.readFile('./dist/js/promolist.bundle.min.js', "utf8", (err, data) => {
-//   if (err) console.log("ERR" ,err);
-//   promolistBundle = data || "";
-// });
-// fs.readFile('./dist/js/promoform.bundle.min.js', "utf8", (err, data) => {
-//   if (err) console.log("ERR" ,err);
-//   promoformBundle = data || "";
-// });
+fs.readFile('./dist/js/promolist.bundle.min.js', "utf8", (err, data) => {
+  if (err) console.log("ERR" ,err);
+  promolistBundle = data || "";
+});
+fs.readFile('./dist/js/promoform.bundle.min.js', "utf8", (err, data) => {
+  if (err) console.log("ERR" ,err);
+  promoformBundle = data || "";
+});
 
 // These are pages
 app.get('/login', (req, res) => {
@@ -109,7 +109,7 @@ var mongoUri = 'mongodb+srv://'+cryptr.decrypt(config.dbuser)+':'+cryptr.decrypt
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('error', console.error.bind(console, 'connection error'));
 mongoose.connection.once('open', function(){
- console.log("Connected to mongoDB");
+  console.log("Connected to mongoDB");
 });
 
 app.listen( PORT, () => {

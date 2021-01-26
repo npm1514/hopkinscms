@@ -31,7 +31,7 @@ function CreatePromo() {
       description = _useState2[0],
       setDescription = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(),
+  var _useState3 = (0, _react.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
       price = _useState4[0],
       setPrice = _useState4[1];
@@ -56,7 +56,7 @@ function CreatePromo() {
     fetch('/promotions', {
       method: 'POST',
       headers: {
-        'Content-Type': 'applications/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringiify({
         description: description,
@@ -76,11 +76,10 @@ function CreatePromo() {
     }).then(function (res) {
       console.log(res);
     });
-  }
+  } // if (description === undefined) {
+  //   return null
+  // }
 
-  if (description === undefined) {
-    return null;
-  }
 
   return /*#__PURE__*/_react["default"].createElement("form", {
     onSubmit: handleSubmit
@@ -108,7 +107,6 @@ function CreatePromo() {
   }), /*#__PURE__*/_react["default"].createElement("label", {
     htmlFor: ""
   }, "Go live"), /*#__PURE__*/_react["default"].createElement("input", {
-    required: true,
     type: "checkbox",
     name: "active",
     onChange: function onChange(event) {
