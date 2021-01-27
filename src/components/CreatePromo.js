@@ -5,7 +5,7 @@ function CreatePromo() {
 
   const [description, setDescription] = useState('')
   const [price, setPrice] = useState(0)
-  const [active, setActive] = useState(false)
+  const [active, setActive] = useState()
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
 
@@ -55,8 +55,12 @@ function CreatePromo() {
         type="checkbox"
         name="active"
         onChange={(event) => {
-          let val = event.target.value == "true" ? true : false;
-          setActive(val)
+          let isChecked = event.target.checked;
+          if (isChecked) {
+            setActive(true)
+          } else {
+            setActive(false)
+          }
         }}
         value = { active }
       />

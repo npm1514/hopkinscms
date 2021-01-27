@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
     },
     active: {
       type: Boolean,
-      default: false,
+      // default: false,
       required: true
     },
     date: {
