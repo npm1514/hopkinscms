@@ -9,6 +9,8 @@ exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _reactDom = require("react-dom");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -25,47 +27,17 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function CreatePromo() {
-  var _useState = (0, _react.useState)(''),
+var DisplayPromo = function DisplayPromo() {
+  var _useState = (0, _react.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
-      description = _useState2[0],
-      setDescription = _useState2[1];
+      promos = _useState2[0],
+      setPromos = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(0),
-      _useState4 = _slicedToArray(_useState3, 2),
-      price = _useState4[0],
-      setPrice = _useState4[1];
-
-  var _useState5 = (0, _react.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      active = _useState6[0],
-      setActive = _useState6[1];
-
-  var _useState7 = (0, _react.useState)(''),
-      _useState8 = _slicedToArray(_useState7, 2),
-      date = _useState8[0],
-      setDate = _useState8[1];
-
-  var _useState9 = (0, _react.useState)(''),
-      _useState10 = _slicedToArray(_useState9, 2),
-      time = _useState10[0],
-      setTime = _useState10[1];
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    var body = {
-      description: description,
-      price: price,
-      active: active,
-      date: date,
-      time: time
-    };
+  var getPromos = function getPromos() {
     fetch('/promotions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(body)
+      method: 'GET' // headers: {'Content-Type': 'application/json'},
+      // body: JSON.stringify(body)
+
     }).then(function (res) {
       if (res.status != 200) {
         return {
@@ -75,67 +47,20 @@ function CreatePromo() {
         return res.json();
       }
     }).then(function (res) {
-      console.log(res);
+      console.log('JSON!!!!', res);
+      setPromos(res);
     });
-  }
+  };
 
-  return /*#__PURE__*/_react["default"].createElement("form", {
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: ""
-  }, "Description:"), /*#__PURE__*/_react["default"].createElement("input", {
-    // if someone types incorrect format 
-    required: true,
-    type: "textarea",
-    name: "description",
-    onChange: function onChange(event) {
-      setDescription(event.target.value);
-    },
-    value: description
-  }), /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: ""
-  }, "Price"), /*#__PURE__*/_react["default"].createElement("input", {
-    required: true,
-    type: "text",
-    name: "price",
-    onChange: function onChange(event) {
-      setPrice(parseInt(event.target.value));
-    },
-    value: price
-  }), /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: ""
-  }, "Go live"), /*#__PURE__*/_react["default"].createElement("input", {
-    type: "checkbox",
-    name: "active",
-    onChange: function onChange(event) {
-      var val = event.target.value == "true" ? true : false;
-      setActive(val);
-    },
-    value: active
-  }), /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: ""
-  }, "Date"), /*#__PURE__*/_react["default"].createElement("input", {
-    required: true,
-    type: "date",
-    name: "date",
-    onChange: function onChange(event) {
-      setDate(event.target.value);
-    },
-    value: date
-  }), /*#__PURE__*/_react["default"].createElement("label", {
-    htmlFor: ""
-  }, "Time"), /*#__PURE__*/_react["default"].createElement("input", {
-    required: true,
-    type: "time",
-    name: "time",
-    onChange: function onChange(event) {
-      setTime(event.target.value);
-    },
-    value: time
-  }), /*#__PURE__*/_react["default"].createElement("input", {
-    type: "submit"
+  console.log('ALL PROMOOOO', promos); // When page renders it will call getPromos to access the DB
+
+  (0, _react.useEffect)(function () {
+    getPromos();
+  }, []);
+  return /*#__PURE__*/_react["default"].createElement("div", null, promos.map(function (promo, index) {
+    return /*#__PURE__*/_react["default"].createElement("div", null, " ", promo.description, " ");
   }));
-}
+};
 
-var _default = CreatePromo;
+var _default = DisplayPromo;
 exports["default"] = _default;

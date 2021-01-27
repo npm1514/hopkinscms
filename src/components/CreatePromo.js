@@ -10,14 +10,14 @@ function CreatePromo() {
   const [time, setTime] = useState('')
 
   function handleSubmit(event){
-    event.preventDefault()
+    event.preventDefault();
+
+    let body = { description, price, active, date, time }
     fetch('/promotions', {
       method:'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringiify({
-        description, price, active, date, time
-      })
-    }).then(res => {
+      body: JSON.stringify(body)
+      }).then(res => {
       if( res.status != 200){
         return {
           message: 'bad request'
@@ -30,9 +30,6 @@ function CreatePromo() {
     })
   }
 
-  // if (description === undefined) {
-  //   return null
-  // }
 
   return (
     <form onSubmit={ handleSubmit }>
@@ -50,14 +47,17 @@ function CreatePromo() {
         required
         type="text"
         name="price"
-        onChange={(event) => {setPrice(event.target.value)}}
+        onChange={(event) => {setPrice(parseInt(event.target.value))}}
         value = { price }
       />
       <label htmlFor="">Go live</label>
       <input 
         type="checkbox"
         name="active"
-        onChange={(event) => {setActive(event.target.value)}}
+        onChange={(event) => {
+          let val = event.target.value == "true" ? true : false;
+          setActive(val)
+        }}
         value = { active }
       />
       <label htmlFor="">Date</label>
