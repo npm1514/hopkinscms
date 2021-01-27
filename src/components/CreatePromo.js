@@ -55,11 +55,11 @@ function CreatePromo() {
         type="checkbox"
         name="active"
         onChange={(event) => {
-          let val = event.target.value == "true" ? true : false;
+          let val = event.target.checked == true ? true : false;
           setActive(val)
         }}
         value = { active }
-      />
+      />t
       <label htmlFor="">Date</label>
       <input 
         required

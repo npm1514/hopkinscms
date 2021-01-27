@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 
 
 const DisplayPromo = () => {
-  const [promos, setPromos] = useState([])
+  let [promos, setPromos] = useState([])
   console.log('************', promos)
 
   const getPromos = () => {
@@ -22,6 +22,7 @@ const DisplayPromo = () => {
     }).then(res => {
       console.log('JSON!!!', res)
       setPromos(res)
+      
     })
     
   }
@@ -34,14 +35,14 @@ const DisplayPromo = () => {
  
 
   return (
-    <div>
-        { 
-          promos.map((promo,index) => {
-              return (
-                <div>{promo.description}</div>
-                )
+    <>
+        { promos.map((promo,index) => {
+        return (
+          <div> {promo.description}</div>
+        )
+
         }) }
-    </div>
+    </>
   )
 }
 

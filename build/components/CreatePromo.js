@@ -109,11 +109,11 @@ function CreatePromo() {
     type: "checkbox",
     name: "active",
     onChange: function onChange(event) {
-      var val = event.target.value == "true" ? true : false;
+      var val = event.target.checked == true ? true : false;
       setActive(val);
     },
     value: active
-  }), /*#__PURE__*/_react["default"].createElement("label", {
+  }), "t", /*#__PURE__*/_react["default"].createElement("label", {
     htmlFor: ""
   }, "Date"), /*#__PURE__*/_react["default"].createElement("input", {
     required: true,

@@ -57,8 +57,8 @@ var DisplayPromo = function DisplayPromo() {
   (0, _react.useEffect)(function () {
     getPromos();
   }, []);
-  return /*#__PURE__*/_react["default"].createElement("div", null, promos.map(function (promo, index) {
-    return /*#__PURE__*/_react["default"].createElement("div", null, promo.description);
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, promos.map(function (promo, index) {
+    return /*#__PURE__*/_react["default"].createElement("div", null, " ", promo.description);
   }));
 };
 

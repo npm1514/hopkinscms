@@ -12,8 +12,6 @@ const mongoose = require('mongoose');
     },
     active: {
       type: Boolean,
-      default: false,
-      required: true
     },
     date: {
       type: String,

@@ -13,9 +13,7 @@ var promotionSchema = new mongoose.Schema({
 
   },
   active: {
-    type: Boolean,
-    "default": false,
-    required: true
+    type: Boolean
   },
   date: {
     type: String,
