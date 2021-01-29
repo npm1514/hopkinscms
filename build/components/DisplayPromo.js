@@ -33,6 +33,11 @@ var DisplayPromo = function DisplayPromo() {
       promos = _useState2[0],
       setPromos = _useState2[1];
 
+  var _useState3 = (0, _react.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      update = _useState4[0],
+      setUpdate = _useState4[1];
+
   var getPromos = function getPromos() {
     fetch('/promotions', {
       method: 'GET' // headers: {'Content-Type': 'application/json'},
@@ -53,18 +58,18 @@ var DisplayPromo = function DisplayPromo() {
   };
 
   function deletePromo(id) {
-    console.log('############', id);
+    console.log('###############', id);
     fetch("/promotions/".concat(id), {
       method: 'DELETE'
     }).then(function (id) {
-      console.log(id);
-      promos.history.push('/promolist');
+      setUpdate(true);
     });
   }
 
   (0, _react.useEffect)(function () {
     getPromos();
-  }, []); // find a way to add an ID into the data
+    setUpdate(false);
+  }, [update]); // find a way to add an ID into the data
 
   return /*#__PURE__*/_react["default"].createElement("div", null, promos.map(function (promo, index) {
     return /*#__PURE__*/_react["default"].createElement("div", {

@@ -5,6 +5,7 @@ import { render } from "react-dom";
 
 const DisplayPromo = () => {
   const [promos, setPromos] = useState([])
+  const [update, setUpdate] = useState(false)
 
   const getPromos = () => {
       fetch('/promotions', {
@@ -24,20 +25,22 @@ const DisplayPromo = () => {
       setPromos(res)
     })
   }
-
+  
   function deletePromo(id){
-    console.log('############', id)
+    console.log('###############',id)
     fetch(`/promotions/${id}`, {
-     method: 'DELETE',
-   }).then(id => {
-    //  something here to redirect?
-     promos.history.push('/promolist')
-   })
- }
+      method: 'DELETE'
+    }).then(function (id){
+      setUpdate(true)
+    })
+  }
+
+  
 
     useEffect(() => {
       getPromos();
-    }, [])
+      setUpdate(false)
+    }, [update])
   
     // find a way to add an ID into the data
       return (
