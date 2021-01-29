@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from 'react'
 
+
 function CreatePromo() {
 
   const [description, setDescription] = useState('')
-  const [price, setPrice] = useState()
-  const [active, setActive] = useState(false)
+  const [price, setPrice] = useState(0)
+  const [active, setActive] = useState()
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
 
@@ -48,18 +49,22 @@ function CreatePromo() {
         name="price"
         onChange={(event) => {setPrice(parseInt(event.target.value))}}
         value = { price }
+        id = "_id"
       />
       <label htmlFor="">Go live</label>
       <input 
-        required
         type="checkbox"
         name="active"
         onChange={(event) => {
-          let val = event.target.checked == true ? true : false;
-          setActive(val)
+          let isChecked = event.target.checked;
+          if (isChecked) {
+            setActive(true)
+          } else {
+            setActive(false)
+          }
         }}
         value = { active }
-      />t
+      />
       <label htmlFor="">Date</label>
       <input 
         required

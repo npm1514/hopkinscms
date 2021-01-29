@@ -31,12 +31,12 @@ function CreatePromo() {
       description = _useState2[0],
       setDescription = _useState2[1];
 
-  var _useState3 = (0, _react.useState)(),
+  var _useState3 = (0, _react.useState)(0),
       _useState4 = _slicedToArray(_useState3, 2),
       price = _useState4[0],
       setPrice = _useState4[1];
 
-  var _useState5 = (0, _react.useState)(false),
+  var _useState5 = (0, _react.useState)(),
       _useState6 = _slicedToArray(_useState5, 2),
       active = _useState6[0],
       setActive = _useState6[1];
@@ -101,19 +101,24 @@ function CreatePromo() {
     onChange: function onChange(event) {
       setPrice(parseInt(event.target.value));
     },
-    value: price
+    value: price,
+    id: "_id"
   }), /*#__PURE__*/_react["default"].createElement("label", {
     htmlFor: ""
   }, "Go live"), /*#__PURE__*/_react["default"].createElement("input", {
-    required: true,
     type: "checkbox",
     name: "active",
     onChange: function onChange(event) {
-      var val = event.target.checked == true ? true : false;
-      setActive(val);
+      var isChecked = event.target.checked;
+
+      if (isChecked) {
+        setActive(true);
+      } else {
+        setActive(false);
+      }
     },
     value: active
-  }), "t", /*#__PURE__*/_react["default"].createElement("label", {
+  }), /*#__PURE__*/_react["default"].createElement("label", {
     htmlFor: ""
   }, "Date"), /*#__PURE__*/_react["default"].createElement("input", {
     required: true,

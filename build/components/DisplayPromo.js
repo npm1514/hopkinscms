@@ -9,6 +9,10 @@ exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _reactRouterDom = require("react-router-dom");
+
+var _reactDom = require("react-dom");
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -25,13 +29,11 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var DisplayPromo = function DisplayPromo() {
+var DisplayPromo = function DisplayPromo(props) {
   var _useState = (0, _react.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       promos = _useState2[0],
       setPromos = _useState2[1];
-
-  console.log('************', promos);
 
   var getPromos = function getPromos() {
     fetch('/promotions', {
@@ -47,18 +49,33 @@ var DisplayPromo = function DisplayPromo() {
         return res.json();
       }
     }).then(function (res) {
-      console.log('JSON!!!', res);
+      console.log('JSON!!!!', res);
       setPromos(res);
     });
-  }; // When page renders it will call getPromos to access the DB
+  };
 
+  function deletePromo(id) {
+    console.log('############', id);
+    fetch("/promotions/".concat(id), {
+      method: 'DELETE'
+    }).then(function (deletedPromo) {
+      console.log('###################', deletedPromo);
+      props.history.push('/promolist');
+    });
+  }
 
-  console.log('ALL PROMOOOO', promos);
   (0, _react.useEffect)(function () {
     getPromos();
   }, []);
-  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, promos.map(function (promo, index) {
-    return /*#__PURE__*/_react["default"].createElement("div", null, " ", promo.description);
+  return /*#__PURE__*/_react["default"].createElement("div", null, promos.map(function (promo, index) {
+    return /*#__PURE__*/_react["default"].createElement("div", {
+      key: promo._id
+    }, promo.description, /*#__PURE__*/_react["default"].createElement("button", {
+      type: "submit",
+      onClick: function onClick() {
+        return deletePromo(promo._id);
+      }
+    }, "Delete"));
   }));
 };
 

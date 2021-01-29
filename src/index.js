@@ -109,7 +109,7 @@ var mongoUri = 'mongodb+srv://'+cryptr.decrypt(config.dbuser)+':'+cryptr.decrypt
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.on('error', console.error.bind(console, 'connection error'));
 mongoose.connection.once('open', function(){
- console.log("Connected to mongoDB");
+  console.log("Connected to mongoDB");
 });
 
 app.listen( PORT, () => {
