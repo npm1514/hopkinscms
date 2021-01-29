@@ -9,8 +9,6 @@ exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _reactRouterDom = require("react-router-dom");
-
 var _reactDom = require("react-dom");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
@@ -29,7 +27,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-var DisplayPromo = function DisplayPromo(props) {
+var DisplayPromo = function DisplayPromo() {
   var _useState = (0, _react.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       promos = _useState2[0],
@@ -58,15 +56,16 @@ var DisplayPromo = function DisplayPromo(props) {
     console.log('############', id);
     fetch("/promotions/".concat(id), {
       method: 'DELETE'
-    }).then(function (deletedPromo) {
-      console.log('###################', deletedPromo);
-      props.history.push('/promolist');
+    }).then(function (id) {
+      console.log(id);
+      promos.history.push('/promolist');
     });
   }
 
   (0, _react.useEffect)(function () {
     getPromos();
-  }, []);
+  }, []); // find a way to add an ID into the data
+
   return /*#__PURE__*/_react["default"].createElement("div", null, promos.map(function (promo, index) {
     return /*#__PURE__*/_react["default"].createElement("div", {
       key: promo._id
